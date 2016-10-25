@@ -3,6 +3,7 @@ package kr.hs.emirim.qls6521.gallerytest;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -55,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
             imgV.setScaleType(ImageView.ScaleType.FIT_CENTER);//가장자리가 잘릴수도있음
             imgV.setPadding(5,5,5,5);
             imgV.setImageResource(lineIDs[position]);
+            final int pos=position;
+            imgV.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    imgMain.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                    imgMain.setImageResource(lineIDs[pos]);//이미지리소스설정
+                    return false;
+                }
+            });
             return imgV;
         }
     }
